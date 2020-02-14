@@ -1,0 +1,11 @@
+## mako
+
+% if course and course.self_paced and tab:
+    <div class="reset-deadlines-banner">
+        <div class="reset-deadlines-text">It looks like you've missed some important deadlines. Reset your deadlines and get started today.</div>
+        <form action="${reset_deadlines_url}" method="post">
+            <input type="hidden" id="csrf_token" name="csrfmiddlewaretoken" value="${csrf_token}">
+            <button class="reset-deadlines-button">Reset my deadlines</button>
+        </form>
+    </div>
+% endif
