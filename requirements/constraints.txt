@@ -85,3 +85,6 @@ drf-yasg<1.17.1
 
 # BOM-1324: This constraint will be removed separately once 3.0.0 is out
 edx-drf-extensions<3.0.0
+
+# Support was dropped for Python 3.5
+path<13.2.0
