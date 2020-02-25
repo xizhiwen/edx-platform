@@ -115,7 +115,7 @@ edx-django-oauth2-provider==1.3.5  # via -r requirements/edx/testing.txt (line 1
 edx-django-release-util==0.3.6  # via -r requirements/edx/testing.txt (line 113)
 edx-django-sites-extensions==2.4.3  # via -r requirements/edx/testing.txt (line 114)
 edx-django-utils==3.0     # via -r requirements/edx/testing.txt (line 115), django-config-models, edx-drf-extensions, edx-enterprise, edx-rest-api-client
-edx-drf-extensions==2.4.6  # via -c requirements/edx/../constraints.txt (line 95), -r requirements/edx/testing.txt (line 116), edx-completion, edx-enterprise, edx-organizations, edx-proctoring, edx-rbac, edx-when, edxval
+edx-drf-extensions==3.0.0  # via -c requirements/edx/../constraints.txt (line 95), -r requirements/edx/testing.txt (line 116), edx-completion, edx-enterprise, edx-organizations, edx-proctoring, edx-rbac, edx-when, edxval
 edx-enterprise==2.4.0     # via -r requirements/edx/testing.txt (line 117)
 edx-i18n-tools==0.5.0     # via -r requirements/edx/testing.txt (line 118), ora2
 edx-lint==1.3.0           # via -r requirements/edx/testing.txt (line 119)
