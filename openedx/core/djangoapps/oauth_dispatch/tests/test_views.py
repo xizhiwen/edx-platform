@@ -16,12 +16,10 @@ from jwkest import jwk
 from mock import call, patch
 from oauth2_provider import models as dot_models
 from organizations.tests.factories import OrganizationFactory
-from provider import constants
 
 from openedx.core.djangoapps.oauth_dispatch.toggles import ENFORCE_JWT_SCOPES
 from student.tests.factories import UserFactory
 from third_party_auth.tests.utils import ThirdPartyOAuthTestMixin, ThirdPartyOAuthTestMixinGoogle
-import pdb
 
 from . import mixins
 
@@ -255,18 +253,17 @@ class TestAccessTokenView(AccessTokenLoginMixin, mixins.AccessTokenMixin, _Dispa
 
     @patch('edx_django_utils.monitoring.set_custom_metric')
     def test_access_token_metrics_for_bad_request(self, mock_set_custom_metric):
-        with self.settings(ENABLE_DOP_ADAPTER=False):
-            grant_type = dot_models.Application.GRANT_PASSWORD
-            invalid_body = {
-                'grant_type': grant_type.replace('-', '_'),
-            }
-            bad_response = self.client.post(self.url, invalid_body)
-            self.assertEqual(bad_response.status_code, 401)
-            expected_calls = [
-                call('oauth_token_type', 'no_token_type_supplied'),
-                call('oauth_grant_type', 'password'),
-            ]
-            mock_set_custom_metric.assert_has_calls(expected_calls, any_order=True)
+        grant_type = dot_models.Application.GRANT_PASSWORD
+        invalid_body = {
+            'grant_type': grant_type.replace('-', '_'),
+        }
+        bad_response = self.client.post(self.url, invalid_body)
+        self.assertEqual(bad_response.status_code, 401)
+        expected_calls = [
+            call('oauth_token_type', 'no_token_type_supplied'),
+            call('oauth_grant_type', 'password'),
+        ]
+        mock_set_custom_metric.assert_has_calls(expected_calls, any_order=True)
 
     @ddt.data(
         (False, True),
@@ -546,24 +543,9 @@ class TestViewDispatch(TestCase):
         """
         return RequestFactory().get('/?client_id={}'.format(client_id))
 
-    def _verify_oauth_metrics_calls(self, mock_set_custom_metric, expected_oauth_adapter):
-        """
-        Args:
-            mock_set_custom_metric: MagicMock of set_custom_metric
-            expected_oauth_adapter: Either 'dot' or 'dop'
-        """
-        #TODO(jinder): check what this function does
-        expected_calls = [
-            call('oauth_client_id', '{}-id'.format(expected_oauth_adapter)),
-            call('oauth_adapter', expected_oauth_adapter),
-        ]
-        mock_set_custom_metric.assert_has_calls(expected_calls, any_order=True)
-
-    @patch('edx_django_utils.monitoring.set_custom_metric')
-    def test_dispatching_post_to_dot(self, mock_set_custom_metric):
+    def test_dispatching_post_to_dot(self):
         request = self._post_request('dot-id')
         self.assertEqual(self.view.select_backend(request), self.dot_adapter.backend)
-        self._verify_oauth_metrics_calls(mock_set_custom_metric, 'dot')
 
     def test_dispatching_get_to_dot(self):
         request = self._get_request('dot-id')
