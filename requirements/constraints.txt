@@ -90,6 +90,3 @@ django-storages<1.9
 
 # Support was dropped for Python 3.5, Django 2.0, Django 2.1, DRF 3.7
 drf-yasg<1.17.1
-
-# Support was dropped for Python 3.5
-path==13.1.0
