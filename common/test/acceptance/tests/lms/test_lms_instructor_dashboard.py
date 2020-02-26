@@ -17,7 +17,6 @@ from common.test.acceptance.pages.lms.courseware import CoursewarePage
 from common.test.acceptance.pages.lms.create_mode import ModeCreationPage
 from common.test.acceptance.pages.lms.dashboard import DashboardPage
 from common.test.acceptance.pages.lms.instructor_dashboard import (
-    EntranceExamAdmin,
     InstructorDashboardPage,
     StudentAdminPage,
     StudentSpecificAdmin
