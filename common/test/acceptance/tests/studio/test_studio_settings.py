@@ -4,25 +4,19 @@ Acceptance tests for Studio's Setting pages
 """
 
 
-import json
 import os
-import random
-import string
 from textwrap import dedent
 
-import six
 from bok_choy.promise import EmptyPromise
 from mock import patch
-from six.moves import range
 
 from common.test.acceptance.fixtures.course import XBlockFixtureDesc
 from common.test.acceptance.pages.common.utils import add_enrollment_course_modes
 from common.test.acceptance.pages.lms.courseware import CoursewarePage
 from common.test.acceptance.pages.studio.overview import CourseOutlinePage
 from common.test.acceptance.pages.studio.settings import SettingsPage
-from common.test.acceptance.pages.studio.settings_advanced import AdvancedSettingsPage
 from common.test.acceptance.pages.studio.settings_group_configurations import GroupConfigurationsPage
-from common.test.acceptance.pages.studio.utils import get_input_value, type_in_codemirror
+from common.test.acceptance.pages.studio.utils import get_input_value
 from common.test.acceptance.tests.helpers import create_user_partition_json, element_has_text
 from common.test.acceptance.tests.studio.base_studio_test import StudioCourseTest
 from openedx.core.lib.tests import attr
