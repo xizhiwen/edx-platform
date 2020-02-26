@@ -61,7 +61,6 @@ class _DispatchingView(View):
         Return the appropriate view from the requested backend.
         """
         if backend == self.dot_adapter.backend:
-            monitoring_utils.set_custom_metric('oauth_view', 'dot')
             return self.dot_view.as_view()
         else:
             raise KeyError('Failed to dispatch view. Invalid backend {}'.format(backend))

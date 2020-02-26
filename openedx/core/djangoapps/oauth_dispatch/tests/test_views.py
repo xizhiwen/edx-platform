@@ -406,6 +406,7 @@ class TestAuthorizationView(_DispatchingViewTestCase):
 
     @ddt.data(
         ('dot', 'allow'),
+        ('dot', 'authorize')
     )
     @ddt.unpack
     def test_post_authorization_view(self, client_type, allow_field):
