@@ -10,7 +10,6 @@ from django.conf import settings
 from django.utils.decorators import method_decorator
 from django.views.generic import View
 from edx_django_utils import monitoring as monitoring_utils
-from oauth2_provider import models as dot_models  # django-oauth-toolkit
 from oauth2_provider import views as dot_views
 from ratelimit import ALL
 from ratelimit.decorators import ratelimit
