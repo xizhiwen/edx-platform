@@ -6,7 +6,6 @@ End-to-end tests for Student's Profile Page.
 
 from contextlib import contextmanager
 from datetime import datetime
-from unittest import skip
 
 import six
 
