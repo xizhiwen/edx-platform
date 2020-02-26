@@ -37,12 +37,7 @@ class _DispatchingView(View):
         client_id = self._get_client_id(request)
         monitoring_utils.set_custom_metric('oauth_client_id', client_id)
 
-        if dot_models.Application.objects.filter(client_id=client_id).exists() or not settings.ENABLE_DOP_ADAPTER:
-            monitoring_utils.set_custom_metric('oauth_adapter', 'dot')
-            return self.dot_adapter
-        else:
-            monitoring_utils.set_custom_metric('oauth_adapter', 'dop')
-            return self.dop_adapter
+        return self.dot_adapter
 
     def dispatch(self, request, *args, **kwargs):
         """

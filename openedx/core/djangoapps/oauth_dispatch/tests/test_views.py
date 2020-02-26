@@ -261,7 +261,7 @@ class TestAccessTokenView(AccessTokenLoginMixin, mixins.AccessTokenMixin, _Dispa
                 'grant_type': grant_type.replace('-', '_'),
             }
             bad_response = self.client.post(self.url, invalid_body)
-            self.assertEqual(bad_response.status_code, 400)
+            self.assertEqual(bad_response.status_code, 401)
             expected_calls = [
                 call('oauth_token_type', 'no_token_type_supplied'),
                 call('oauth_grant_type', 'password'),
