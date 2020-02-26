@@ -9,9 +9,8 @@ from datetime import datetime, timedelta
 from textwrap import dedent
 
 import pytz
-from six.moves import range
 
-from common.test.acceptance.fixtures.course import CourseFixture, CourseUpdateDesc, XBlockFixtureDesc
+from common.test.acceptance.fixtures.course import CourseFixture, XBlockFixtureDesc
 from common.test.acceptance.pages.common.auto_auth import AutoAuthPage
 from common.test.acceptance.pages.common.logout import LogoutPage
 from common.test.acceptance.pages.common.utils import enroll_user_track
@@ -32,16 +31,11 @@ from common.test.acceptance.pages.lms.discovery import CourseDiscoveryPage
 from common.test.acceptance.pages.lms.login_and_register import CombinedLoginAndRegisterPage, ResetPasswordPage
 from common.test.acceptance.pages.lms.pay_and_verify import FakePaymentPage, PaymentAndVerificationFlow
 from common.test.acceptance.pages.lms.problem import ProblemPage
-from common.test.acceptance.pages.lms.progress import ProgressPage
 from common.test.acceptance.pages.lms.tab_nav import TabNavPage
-from common.test.acceptance.pages.lms.video.video import VideoPage
-from common.test.acceptance.pages.studio.settings import SettingsPage
 from common.test.acceptance.tests.helpers import (
     EventsTestMixin,
     UniqueCourseTest,
-    element_has_text,
     get_selected_option_text,
-    load_data_str,
     remove_file,
     select_option_by_text
 )
