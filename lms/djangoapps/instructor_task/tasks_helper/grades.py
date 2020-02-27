@@ -268,15 +268,18 @@ class CourseGradeReport(object):
     def _batched_rows(self, context):
         """
         A generator of batches of (success_rows, error_rows) for this report.
+        In case we get an empty generator, return tuple ([], []) of empty lists.
         """
         empty_generator_sentinel = object()
         batch_users = self._batch_users(context)
-        a_batch_of_users = next(batch_users, empty_generator_sentinel)
-        the_batch_is_empty = a_batch_of_users == empty_generator_sentinel
-        if the_batch_is_empty:
+        first_batch_of_users = next(batch_users, empty_generator_sentinel)
+        the_first_user_batch_is_empty = first_batch_of_users == empty_generator_sentinel
+        if the_first_user_batch_is_empty:
             yield [], []
         else:
-            yield self._rows_for_users(context, a_batch_of_users)
+            # If the generator was non-empty, return batches of (success_rows, error_rows) rows
+            # for its all iterations (including the first batch).
+            yield self._rows_for_users(context, first_batch_of_users)
             for users in batch_users:
                 yield self._rows_for_users(context, users)
 
